@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from './ProjectMARSLogo.png';
 import './App.css';
-/* test 3 */
+/* test 4 */
 function App() {
   const [logoVisible, setLogoVisible] = useState(true);
   const [welcomeText, setWelcomeText] = useState('Welcome');
