@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import logo from './ProjectMARSLogo.png';
+import logo from './pmars3.gif';
 import './App.css';
-/* test 4 */
+/* test 5 */
 function App() {
-  const [logoVisible, setLogoVisible] = useState(true);
+  const [logoVisible] = useState(true);
   const [welcomeText, setWelcomeText] = useState('Welcome');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
