@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from './ProjectMARSLogo.png';
 import './App.css';
-
+/* test 3 */
 function App() {
   const [logoVisible, setLogoVisible] = useState(true);
   const [welcomeText, setWelcomeText] = useState('Welcome');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [panelItems, setPanelItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [panelItems] = useState(['Item 1', 'Item 2', 'Item 3']);
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
