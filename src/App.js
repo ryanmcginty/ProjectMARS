@@ -51,7 +51,7 @@ function App() {
         <div className='logo-container'>
           {logoVisible && <img src={logo} className='App-logo' alt="logo"/>}
         </div>
-        <p>{welcomeText}</p>
+        <h1>{welcomeText}</h1>
         {!buttonClicked && (
           <button onClick={handleButtonClick}>Click me</button>
         )}

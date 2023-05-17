@@ -1,6 +1,10 @@
-p {
+h1 {
   font-family: sans-serif;
   font-size: 4vw;
+}
+button {
+  background-color: #ad6241;
+  border-radius: 25px;
 }
 .App {
   text-align: center;
