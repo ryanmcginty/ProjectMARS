@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import logo from './pmarslogo.png';
+import logo from './controller3.png';
 import zelda from './zelda.jpg'
 import './App.css';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 /* test 5 */
 function App() {
   const [welcomeText, setWelcomeText] = useState('Begin?');
@@ -12,6 +13,7 @@ function App() {
   const [gameLiked, setGameLiked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [panelItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [gameCover, setGameCover] = useState('');
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
@@ -25,7 +27,7 @@ function App() {
     setButtonClicked(true)
   };
   const handleBackClick = () => {
-    setWelcomeText('Welcome')
+    setWelcomeText('Begin?')
     setButtonClicked(false)
     setGameLiked(false)
   };
@@ -36,60 +38,91 @@ function App() {
     setGameLiked(false)
   };
 
+  const getRandomGameCover = async () => {
+    const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
+    const response = await fetch(
+      'https://www.giantbomb.com/api/game/?api_key=5a9aed02c512451b238b2e25ac4c739ecc8de336&format=json&sort=random'
+    );
+    const data = await response.json();
+    if (data.results.length > 0 && data.results[0].image) {
+      const image = data.results[0].image.medium_url;
+      setGameCover(image);
+    }
+  }
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ad6242',
+      },
+      secondary: {
+        main: '#497d3b',
+      },
+    },
+  });
+  /*
+  useEffect(() => {
+    getRandomGameCover();
+  }, []);
+  */
   return (
-    <div className="App">
-      <div className='menu-bar'>
-          <div className={`menu ${menuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
-            <div className='menu-icon-container'>
-              <FontAwesomeIcon icon={faBars}/>
-            </div>
-            {menuOpen && (
-              <div className="menu-panel" style={{
-                animationName: menuOpen ? 'dropDown' : 'slideUp',
-                animationDuration: '0.5s',
-                animationTimingFunction: 'ease',
-                animationFillMode: 'forwards',
-              }} 
-              onClick={handleMenuClick}>
-                <ul>
-                  {panelItems.map((item, index) => (
-                    <li key={index} onClick={() => handlePanelClick(item)}>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <div className='menu-bar'>
+            <div className={`menu ${menuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
+              <div className='menu-icon-container'>
+                <FontAwesomeIcon icon={faBars}/>
               </div>
+              {menuOpen && (
+                <div className="menu-panel" style={{
+                  animationName: menuOpen ? 'dropDown' : 'slideUp',
+                  animationDuration: '0.5s',
+                  animationTimingFunction: 'ease',
+                  animationFillMode: 'forwards',
+                }} 
+                onClick={handleMenuClick}>
+                  <ul>
+                    {panelItems.map((item, index) => (
+                      <li key={index} onClick={() => handlePanelClick(item)}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+          <header className="App-header">
+          <div className='logo-container'>
+            <img src={logo} className='App-logo' alt='logo'/>
+          </div>
+          <div className='welcome-text'>
+            <h2>{welcomeText}</h2>
+          </div>
+          <div className='buttons-container'>
+          {!buttonClicked && <Button variant='contained' color='secondary' startIcon={<sendIcon />} onClick={handleButtonClick}>Click</Button>}
+          {buttonClicked && (
+            <div className='game-container'>
+              <div className='game-image'>
+                <img src={gameCover} alt='game' />
+              </div>
+              <div className='like-dislike-button'>
+                <Stack direction="row" spacing={109}>
+                  <Button variant='contained' color='primary' onClick={handleDislikeClick}>
+                    LT
+                  </Button>
+                  <Button variant='contained' color='secondary' onClick={handleLikeClick}>
+                    RT
+                  </Button>
+                </Stack>
+              </div>
+            </div>
             )}
+            {buttonClicked && <Button variant='outlined' onClick={handleBackClick}>Back</Button>}
           </div>
-        </div>
-        <header className="App-header">
-        <div className='logo-container'>
-          <img src={logo} className='App-logo' alt='logo'/>
-        </div>
-        <div className='welcome-text'>
-          <h2>{welcomeText}</h2>
-        </div>
-        <div className='buttons-container'>
-        {!buttonClicked && <button onClick={handleButtonClick}>Start</button>}
-        {buttonClicked && (
-          <div className='game-container'>
-            <div className='game-image'>
-              <img src={zelda} alt='game' />
-            </div>
-            <div className='like-dislike-button'>
-            <Button variant='contained' color='primary' onClick={handleDislikeClick}>
-              LT
-            </Button>
-            <Button variant='contained' color='secondary' onClick={handleLikeClick}>
-              RT
-            </Button>
-            </div>
-          </div>
-          )}
-          {buttonClicked && <button onClick={handleBackClick}>Back</button>}
-        </div>
-      </header>
-    </div>
+        </header>
+      </div>
+    </ThemeProvider>
   );
 }
 

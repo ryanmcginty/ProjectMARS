@@ -1,5 +1,5 @@
 h2 {
-  font-family: 'Segoe UI';
+  font-family: 'Astron Boy';
   font-size: 4vw;
 }
 
@@ -16,6 +16,11 @@ button {
 
 button:hover {
   background-color: #ad6241;
+}
+
+@font-face {
+  font-family: 'Astron Boy';
+  src: url('./fonts/astron-boy/astron-boy-italic.otf') format('truetype');
 }
 
 .App {
@@ -48,7 +53,7 @@ button:hover {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #7da378;
+  background-color: #497d3b;
   z-index: 2;
 }
 
@@ -78,7 +83,7 @@ button:hover {
   top: 100%;
   left: -5px;
   width: 200px;
-  background-color: #7da378;
+  background-color: #497d3b;
   padding: 20px;
   z-index: 4;
   border-radius: 10px;
@@ -113,7 +118,7 @@ button:hover {
   position: fixed;
   top: 10px;
   left: 10px;
-  transform: translate(-42.5%, 3%);
+  transform: translateY(250%);
   z-index: 0;
 }
 
@@ -141,6 +146,7 @@ button:hover {
   width: 20%;
   height: 20%;
 }
+/*
 .App-logo-behind {
   position: absolute;
   top: 0;
@@ -148,7 +154,7 @@ button:hover {
   z-index: -1;
   opacity: 0.3;
 }
-
+*/
 .welcome-text {
   margin-top: 60px;
 }
