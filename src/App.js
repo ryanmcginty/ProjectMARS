@@ -25,6 +25,7 @@ function App() {
   const handleButtonClick = () => {
     setWelcomeText('Left or Right Trigger?')
     setButtonClicked(true)
+    getRandomGameCover();
   };
   const handleBackClick = () => {
     setWelcomeText('Begin?')
@@ -38,17 +39,24 @@ function App() {
     setGameLiked(false)
   };
 
+  const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
+
   const getRandomGameCover = async () => {
     const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
     const response = await fetch(
-      'https://www.giantbomb.com/api/game/?api_key=5a9aed02c512451b238b2e25ac4c739ecc8de336&format=json&sort=random'
+      `${CORS_PROXY_URL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=random`
     );
     const data = await response.json();
-    if (data.results.length > 0 && data.results[0].image) {
-      const image = data.results[0].image.medium_url;
-      setGameCover(image);
+    console.log(data);
+    if (data.results.length > 0) {
+      const randomIndex = Math.floor(Math.random() * data.results.length);
+      const randomGame = data.results[randomIndex];
+      if (randomGame.image) {
+        const image = randomGame.image.medium_url.replace('http:','https');
+        setGameCover(image);
+      }
     }
-  }
+  };
 
   const theme = createTheme({
     palette: {
@@ -104,7 +112,7 @@ function App() {
           {buttonClicked && (
             <div className='game-container'>
               <div className='game-image'>
-                <img src={gameCover} alt='game' />
+                <img src={gameCover} alt='game' style={{ maxWidth: '100%', maxHeight: '100%'}} />
               </div>
               <div className='like-dislike-button'>
                 <Stack direction="row" spacing={109}>
