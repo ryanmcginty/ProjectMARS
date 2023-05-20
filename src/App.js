@@ -5,38 +5,51 @@ import logo from './controllert.png';
 import './App.css';
 import { Button, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LikedGames from './components/LikedGames';
 
 function App() {
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
+  const [summaryText, setSummaryText] = useState('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
   const [gameLiked, setGameLiked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [panelItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [panelItems] = useState(['Liked Games']);
   const [gameCover, setGameCover] = useState('');
   const [gameTitle, setGameTitle] = useState('');
+  const [likedGames, setLikedGames] = useState([]);
+  const [showLikedGames, setShowLikedGames] = useState(false);
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
   };
   const handlePanelClick = (item) => {
-    setWelcomeText('You clicked ' + item)
+    setWelcomeText(item)
     setButtonClicked(true)
+    if (item === 'Liked Games') {
+      setShowLikedGames(true)
+    }
   };
   const handleButtonClick = () => {
-    setWelcomeText('Dislike (RT) or Like (LT)?')
+    setWelcomeText('')
+    setSummaryText('')
     setButtonClicked(true)
     getRandomGameCover();
   };
   const handleBackClick = () => {
     setWelcomeText('-Press Start-')
+    setSummaryText('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
     setButtonClicked(false)
     setGameLiked(false)
   };
   const handleLikeClick = () => {
+    const likedGame = { cover: gameCover, title: gameTitle }
+    setLikedGames((prevLikedGames) => [...prevLikedGames, likedGame])
     setGameLiked(true)
+    getRandomGameCover()
   };
   const handleDislikeClick = () => {
     setGameLiked(false)
+    getRandomGameCover()
   };
 
   const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
@@ -106,16 +119,22 @@ function App() {
             <img src={logo} className='App-logo' alt='logo'/>
           </div>
           <div className='welcome-text'>
-            <h2>{welcomeText}</h2>
+            <p className='para'>
+              {summaryText}
+            </p>
+            <h2>
+              {welcomeText}
+            </h2>
+            
           </div>
-        {!buttonClicked && <Button variant='contained' color='secondary' onClick={handleButtonClick}>Start</Button>}
+        
         {buttonClicked && (
           <div className='game-container'>
             <h3 className='fixed-title'>{gameTitle}</h3>
             <div className='game-image'>
               <img src={gameCover} alt='game' style={{ maxWidth: '75%', maxHeight: '75%'}} />
             </div>
-            <div className='like-dislike-button'>
+            <div className='like-dislike-buttons'>
               <div className='button-container'>
                 <Button variant='contained' color='primary' onClick={handleDislikeClick}>
                   LT
@@ -127,8 +146,16 @@ function App() {
             </div>
           </div>
           )}
-          {buttonClicked && <Button variant='contained' color='warning' className='back-button' onClick={handleBackClick}>Back</Button>}
+          {buttonClicked && <Button variant='contained' color='inherit' className='back-button' onClick={handleBackClick}>Back</Button>}
         </header>
+        {!buttonClicked && (
+          <div className='start-button-container'>
+            <Button variant='contained' color='secondary' className='start-button' onClick={handleButtonClick}>Start</Button>
+          </div>
+        )}
+        {showLikedGames && (
+          <LikedGames likedGames={likedGames} />
+        )}
       </div>
     </ThemeProvider>
   );

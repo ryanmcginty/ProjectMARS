@@ -1,6 +1,10 @@
 h2 {
   font-family: 'Astron Boy';
-  font-size: 3.5vw;
+  font-size: 5vw;
+  color: black;
+}
+p {
+  color: #000;
 }
 
 button {
@@ -10,6 +14,10 @@ button {
 
 button:hover {
   background-color: #ad6241;
+}
+
+body {
+  overflow: hidden;
 }
 
 @font-face {
@@ -23,19 +31,20 @@ button:hover {
 }
 
 .App-header {
-  background-color: #3d3c3c;
+  background-color: #b1b0b0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(122, 120, 120);
   overflow: hidden;
   z-index: 1;
+  justify-content: center;
 }
 
 .App-header p {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .menu-bar {
@@ -47,7 +56,7 @@ button:hover {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #497d3b;
+  background-color: #343534;
   z-index: 2;
 }
 
@@ -112,7 +121,7 @@ button:hover {
   position: fixed;
   top: 10px;
   left: 10px;
-  transform: translateY(100%);
+  transform: translateY(35%);
   z-index: 0;
 }
 
@@ -124,31 +133,32 @@ button:hover {
 
 .game-container {
   position: relative;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 }
 
 .game-image {
   position: relative;
   top: 100px;
-  width: 100%;
-  margin-bottom: 125px;
+  width: 75%;
+  max-width: 600px;
+  margin-bottom: 30px;
 }
 
 .like-dislike-buttons {
-  display: fixed;
-  margin-top: 20px;
-  bottom: 0;
-  z-index: 2;
+  display: flex;
   justify-content: center;
-  width: 100%;
+  margin-top: 70px;
+  margin-bottom: 20px;
 }
 
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 300px;
+  gap: 10px;
 }
 
 .App-logo {
@@ -157,19 +167,43 @@ button:hover {
 }
 
 .welcome-text {
-  margin-top: 10px;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+  max-width: 900px;
 }
 
 .fixed-title {
   position: fixed;
+  top: 15px;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translateX(-50%);
   width: 100%;
   text-align: center;
+  margin-top: 30px;
+}
+
+.start-button-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.start-button {
+  z-index: 2;
+  position: relative;
 }
 
 .back-button {
-  transform: translateY(150%);
+  position: fixed;
+  bottom: 20px;
+  left: 3%;
+  transform: translateX(-50%);
 }
 
 @keyframes dropDown {
