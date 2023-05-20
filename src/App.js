@@ -39,23 +39,27 @@ function App() {
     setGameLiked(false)
   };
 
-  const CORS_PROXY_URL = 'https://cors.bridged.cc/'
+  const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
 
   const getRandomGameCover = async () => {
-    const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
-    const response = await fetch(
-      `${CORS_PROXY_URL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=random`
-    );
-    const data = await response.json();
-    console.log(data);
-    if (data.results.length > 0) {
-      const randomIndex = Math.floor(Math.random() * data.results.length);
-      const randomGame = data.results[randomIndex];
-      if (randomGame.image) {
-        const image = randomGame.image.medium_url.replace('http:','https');
-        setGameCover(image);
-        setGameTitle(randomGame.name)
+    try {
+      const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
+      const response = await fetch(
+        `${CORS_PROXY_URL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=random`
+      );
+      const data = await response.json();
+      console.log(data);
+      if (data.results.length > 0) {
+        const randomIndex = Math.floor(Math.random() * data.results.length);
+        const randomGame = data.results[randomIndex];
+        if (randomGame.image) {
+          const image = randomGame.image.medium_url.replace('http:','https');
+          setGameCover(image);
+          setGameTitle(randomGame.name)
+        }
       }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -109,7 +113,7 @@ function App() {
           <div className='game-container'>
             <h3 className='fixed-title'>{gameTitle}</h3>
             <div className='game-image'>
-              <img src={gameCover} alt='game' style={{ maxWidth: '500%', maxHeight: '500%'}} />
+              <img src={gameCover} alt='game' style={{ maxWidth: '75%', maxHeight: '75%'}} />
             </div>
             <div className='like-dislike-button'>
               <div className='button-container'>

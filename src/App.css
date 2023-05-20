@@ -123,6 +123,7 @@ button:hover {
 }
 
 .game-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,16 +132,17 @@ button:hover {
 .game-image {
   position: relative;
   top: 100px;
-  left: -110px;
-  width: 7%;
-  margin-bottom: 50px;
+  width: 100%;
+  margin-bottom: 125px;
 }
 
 .like-dislike-buttons {
   display: fixed;
   margin-top: 20px;
+  bottom: 0;
   z-index: 2;
   justify-content: center;
+  width: 100%;
 }
 
 .button-container {
@@ -167,7 +169,7 @@ button:hover {
 }
 
 .back-button {
-  transform: translateY(250%);
+  transform: translateY(150%);
 }
 
 @keyframes dropDown {
