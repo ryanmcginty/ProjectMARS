@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import logo from './controller3.png';
+import logo from './controllert.png';
 import zelda from './zelda.jpg'
 import './App.css';
 import { Button, Stack } from '@mui/material';
@@ -14,6 +14,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [panelItems] = useState(['Item 1', 'Item 2', 'Item 3']);
   const [gameCover, setGameCover] = useState('');
+  const [gameTitle, setGameTitle] = useState('');
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
@@ -23,7 +24,7 @@ function App() {
     setButtonClicked(true)
   };
   const handleButtonClick = () => {
-    setWelcomeText('Left or Right Trigger?')
+    setWelcomeText('Dislike (RT) or Like (LT)?')
     setButtonClicked(true)
     getRandomGameCover();
   };
@@ -54,6 +55,7 @@ function App() {
       if (randomGame.image) {
         const image = randomGame.image.medium_url.replace('http:','https');
         setGameCover(image);
+        setGameTitle(randomGame.name)
       }
     }
   };
@@ -61,18 +63,14 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#ad6242',
+        main: '#ad4444',
       },
       secondary: {
         main: '#497d3b',
       },
     },
   });
-  /*
-  useEffect(() => {
-    getRandomGameCover();
-  }, []);
-  */
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -101,33 +99,32 @@ function App() {
             </div>
           </div>
           <header className="App-header">
-          <div className='logo-container'>
+          <div className={`logo-container ${buttonClicked ? 'shrink' : ''}`}>
             <img src={logo} className='App-logo' alt='logo'/>
           </div>
           <div className='welcome-text'>
             <h2>{welcomeText}</h2>
           </div>
-          <div className='buttons-container'>
-          {!buttonClicked && <Button variant='contained' color='secondary' startIcon={<sendIcon />} onClick={handleButtonClick}>Click</Button>}
-          {buttonClicked && (
-            <div className='game-container'>
-              <div className='game-image'>
-                <img src={gameCover} alt='game' style={{ maxWidth: '100%', maxHeight: '100%'}} />
-              </div>
-              <div className='like-dislike-button'>
-                <Stack direction="row" spacing={109}>
-                  <Button variant='contained' color='primary' onClick={handleDislikeClick}>
-                    LT
-                  </Button>
-                  <Button variant='contained' color='secondary' onClick={handleLikeClick}>
-                    RT
-                  </Button>
-                </Stack>
-              </div>
+        {!buttonClicked && <Button variant='contained' color='secondary' startIcon={<sendIcon />} onClick={handleButtonClick}>Click</Button>}
+        {buttonClicked && (
+          <div className='game-container'>
+            <h3 className='fixed-title'>{gameTitle}</h3>
+            <div className='game-image'>
+              <img src={gameCover} alt='game' style={{ maxWidth: '500%', maxHeight: '500%'}} />
             </div>
-            )}
-            {buttonClicked && <Button variant='outlined' onClick={handleBackClick}>Back</Button>}
+            <div className='like-dislike-button'>
+              <Stack direction="row" spacing={109}>
+                <Button variant='contained' color='primary' onClick={handleDislikeClick}>
+                  LT
+                </Button>
+                <Button variant='contained' color='secondary' onClick={handleLikeClick}>
+                  RT
+                </Button>
+              </Stack>
+            </div>
           </div>
+          )}
+          {buttonClicked && <Button variant='contained' color='warning' className='back-button' onClick={handleBackClick}>Back</Button>}
         </header>
       </div>
     </ThemeProvider>
