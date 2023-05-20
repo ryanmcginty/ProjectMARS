@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from './controllert.png';
-import zelda from './zelda.jpg'
 import './App.css';
 import { Button, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-/* test 5 */
+
 function App() {
-  const [welcomeText, setWelcomeText] = useState('Begin?');
+  const [welcomeText, setWelcomeText] = useState('- Press Start -');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [gameLiked, setGameLiked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,7 +28,7 @@ function App() {
     getRandomGameCover();
   };
   const handleBackClick = () => {
-    setWelcomeText('Begin?')
+    setWelcomeText('-Press Start-')
     setButtonClicked(false)
     setGameLiked(false)
   };
@@ -40,7 +39,7 @@ function App() {
     setGameLiked(false)
   };
 
-  const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
+  const CORS_PROXY_URL = 'https://cors.bridged.cc/'
 
   const getRandomGameCover = async () => {
     const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
@@ -105,7 +104,7 @@ function App() {
           <div className='welcome-text'>
             <h2>{welcomeText}</h2>
           </div>
-        {!buttonClicked && <Button variant='contained' color='secondary' startIcon={<sendIcon />} onClick={handleButtonClick}>Click</Button>}
+        {!buttonClicked && <Button variant='contained' color='secondary' onClick={handleButtonClick}>Start</Button>}
         {buttonClicked && (
           <div className='game-container'>
             <h3 className='fixed-title'>{gameTitle}</h3>
@@ -113,14 +112,14 @@ function App() {
               <img src={gameCover} alt='game' style={{ maxWidth: '500%', maxHeight: '500%'}} />
             </div>
             <div className='like-dislike-button'>
-              <Stack direction="row" spacing={109}>
+              <div className='button-container'>
                 <Button variant='contained' color='primary' onClick={handleDislikeClick}>
                   LT
                 </Button>
                 <Button variant='contained' color='secondary' onClick={handleLikeClick}>
                   RT
                 </Button>
-              </Stack>
+              </div>
             </div>
           </div>
           )}
