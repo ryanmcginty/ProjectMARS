@@ -22,14 +22,6 @@ function App({ likedGames, setLikedGames }) {
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
   };
-  const handlePanelClick = (item) => {
-    setButtonClicked(true)
-    //setWelcomeText('')
-    //setSummaryText('')
-    if (item === 'Liked Games' && !showLikedGamesPage) {
-      setShowLikedGamesPage(true)
-    }
-  };
   const handleButtonClick = () => {
     setWelcomeText('')
     setSummaryText('')
@@ -50,7 +42,7 @@ function App({ likedGames, setLikedGames }) {
     getRandomGameCover()
   };
 
-  const CORS_PROXY_URL = 'http://cors-anywhere.herokuapp.com/'
+  const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
 
   const getRandomGameCover = async () => {
     setLoading(true);
@@ -126,7 +118,7 @@ function App({ likedGames, setLikedGames }) {
                 onClick={handleMenuClick}>
                   <ul>
                     {panelItems.map((item, index) => (
-                      <li key={index} onClick={() => handlePanelClick(item)}>
+                      <li key={index}>
                         {item === 'Liked Games' ? (
                           <Link to="/liked-games">{item}</Link>
                         ) : (

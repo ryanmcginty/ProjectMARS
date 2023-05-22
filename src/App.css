@@ -23,6 +23,18 @@ button:hover {
   background-color: #d6d6d6;
 }
 
+a:link {
+  color: green;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: blue;
+}
+
 @font-face {
   font-family: 'Astron Boy';
   src: url('./fonts/astron-boy/astron-boy-italic.otf') format('truetype');
@@ -105,7 +117,7 @@ button:hover {
 }
 
 .menu-panel li {
-  background-color: #a8caf0;
+  background-color: #50514f;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -121,9 +133,7 @@ button:hover {
 
 .logo-container {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  transform: translateY(35%);
+  top: 150px;
   z-index: 0;
 }
 
@@ -174,8 +184,8 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 80%;
-  max-width: 900px;
+  width: 100vh;
+  max-width: 100vw;
   color: #fff;
 }
 
@@ -206,7 +216,7 @@ button:hover {
 .back-button {
   position: fixed;
   bottom: 20px;
-  left: 50%;
+  left: 3%;
   transform: translateX(-50%);
 }
 
