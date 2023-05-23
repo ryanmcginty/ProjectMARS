@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from './controllert.png';
 import './App.css';
-import { Button } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LikedGames from './components/LikedGames';
 import { Link } from 'react-router-dom';
 
@@ -72,109 +70,81 @@ function App({ likedGames, setLikedGames }) {
     }
   };
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#558b81',
-        dark: '#68a7ed',
-      },
-      secondary: {
-        main: '#0087bd',
-        dark: '#05abed',
-      },
-      back: {
-        main: '#a697af',
-        contrastText: '#3c224d',
-        dark: '#9c56c7',
-      },
-      LT: {
-        main: '#ad4444',
-        contrastText: '#fff',
-        dark: '#c73030',
-      },
-      RT: {
-        main: '#497d3b',
-        contrastText: '#fff',
-        dark: '#4a9c33',
-      },
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <div className='menu-bar'>
-            <div className={`menu ${menuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
-              <div className='menu-icon-container'>
-                <FontAwesomeIcon icon={faBars}/>
+    <div className="App">
+      <div className='menu-bar'>
+          <div className={`menu ${menuOpen ? 'open' : ''}`} onClick={handleMenuClick}>
+            <div className='menu-icon-container'>
+              <FontAwesomeIcon icon={faBars}/>
+            </div>
+            {menuOpen && (
+              <div className="menu-panel" style={{
+                animationName: menuOpen ? 'dropDown' : 'slideUp',
+                animationDuration: '0.5s',
+                animationTimingFunction: 'ease',
+                animationFillMode: 'forwards',
+              }} 
+              onClick={handleMenuClick}>
+                <ul>
+                  {panelItems.map((item, index) => (
+                    <li key={index}>
+                      {item === 'Liked Games' ? (
+                        <Link to="/liked-games">{item}</Link>
+                      ) : (
+                        item
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              {menuOpen && (
-                <div className="menu-panel" style={{
-                  animationName: menuOpen ? 'dropDown' : 'slideUp',
-                  animationDuration: '0.5s',
-                  animationTimingFunction: 'ease',
-                  animationFillMode: 'forwards',
-                }} 
-                onClick={handleMenuClick}>
-                  <ul>
-                    {panelItems.map((item, index) => (
-                      <li key={index}>
-                        {item === 'Liked Games' ? (
-                          <Link to="/liked-games">{item}</Link>
-                        ) : (
-                          item
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            )}
+          </div>
+        </div>
+        <header className="App-header">
+        <div className={`logo-container ${buttonClicked ? 'shrink' : ''}`}>
+          <img src={logo} className='App-logo' alt='logo'/>
+        </div>
+        <div className='welcome-text'>
+          <p className='para'>
+            {summaryText}
+          </p>
+          <h2>
+            {welcomeText}
+          </h2>
+          
+        </div>
+      {loading ? ( 
+        <p>Loading...</p>
+      ) : buttonClicked ? ( 
+        <div className='game-container'>
+          <h3 className='fixed-title'>{gameTitle}</h3>
+          <div className='game-image'>
+            <img src={gameCover} alt='game' style={{ maxWidth: '75vw', maxHeight: '75vh'}} />
+          </div>
+          <div className='like-dislike-buttons'>
+            <div className='button-container'>
+              <button className='lt-button' color='LT' onClick={handleDislikeClick}>
+                LT
+              </button>
+              <button className='rt-button' color='RT' onClick={handleLikeClick}>
+                RT
+              </button>
             </div>
           </div>
-          <header className="App-header">
-          <div className={`logo-container ${buttonClicked ? 'shrink' : ''}`}>
-            <img src={logo} className='App-logo' alt='logo'/>
-          </div>
-          <div className='welcome-text'>
-            <p className='para'>
-              {summaryText}
-            </p>
-            <h2>
-              {welcomeText}
-            </h2>
-            
-          </div>
-        {loading ? ( 
-          <p>Loading...</p>
-        ) : buttonClicked ? ( 
-          <div className='game-container'>
-            <h3 className='fixed-title'>{gameTitle}</h3>
-            <div className='game-image'>
-              <img src={gameCover} alt='game' style={{ maxWidth: '75%', maxHeight: '75%'}} />
-            </div>
-            <div className='like-dislike-buttons'>
-              <div className='button-container'>
-                <Button variant='contained' color='LT' onClick={handleDislikeClick}>
-                  LT
-                </Button>
-                <Button variant='contained' color='RT' onClick={handleLikeClick}>
-                  RT
-                </Button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className='start-button-container'>
-            <Button variant='contained' color='secondary' className='start-button' onClick={handleButtonClick}>Start</Button>
-          </div>
-        )}
-        {buttonClicked && <Button variant='contained' color='back' className='back-button' onClick={handleBackClick}>Back</Button>}
-        </header>
-        {showLikedGamesPage && ( 
-          <LikedGames likedGames={likedGames} onClose={() => setShowLikedGamesPage(false)} />
-        )}
+        </div>
+      ) : (
+        <div className='start-button-container'>
+          <button color='secondary' className='rainbow-button' onClick={handleButtonClick}>Start</button>
+        </div>
+      )}
+      <div className='start-button-container'>
+        {buttonClicked && <button className='rainbow-button' onClick={handleBackClick}>Back</button>}
       </div>
-    </ThemeProvider>
+      </header>
+      {showLikedGamesPage && ( 
+        <LikedGames likedGames={likedGames} onClose={() => setShowLikedGamesPage(false)} />
+      )}
+    </div>
   );
 }
 

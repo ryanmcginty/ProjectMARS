@@ -1,16 +1,16 @@
 h2 {
   font-family: 'Astron Boy';
   font-size: 5vw;
-  color: #fff;
+  color: #000;
 }
 
 h3 {
-  color: #fff;
+  color: #000;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 p {
-  color: #fff;
+  color: #000;
   font-family: 'Segoe UI';
 }
 
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .App-header {
-  background-color: #50514f;
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #0087bd;
+  background-color: grey;
   z-index: 2;
 }
 
@@ -155,6 +155,7 @@ a:hover {
 .game-image {
   position: relative;
   top: 100px;
+  right: 16%;
   width: 75%;
   max-width: 600px;
   margin-bottom: 30px;
@@ -166,6 +167,115 @@ a:hover {
   margin-top: 70px;
   margin-bottom: 20px;
 }
+.lt-button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.lt-button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-start-button 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.lt-button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e75f5e;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.rt-button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.rt-button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-start-button 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.rt-button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #61a850;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
 
 .button-container {
   display: flex;
@@ -174,8 +284,9 @@ a:hover {
 }
 
 .App-logo {
-  width: 25%;
-  height: 25%;
+  width: 25vw;
+  height: 26vh;
+  padding: 0.6em 2em;
 }
 
 .welcome-text {
@@ -201,35 +312,86 @@ a:hover {
 
 .start-button-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
 }
 
-.start-button {
-  z-index: 2;
+.rainbow-button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
   position: relative;
-  margin-bottom: 40px;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.rainbow-button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-start-button 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.rainbow-button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
 }
 
 .back-button {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   left: 3%;
   transform: translateX(-50%);
 }
 
 .back-button-LG {
-  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
 .liked-games-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #50514f;
+  background-color: #fff;
   height: 100vh;
 }
 
@@ -248,17 +410,26 @@ a:hover {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  margin-right: 10px;
 }
 
 .liked-games-title {
-  font-size: 4.5vw;
-  background-color: #0287db;
+  position: relative;
+  font-size: 4vw;
   width: 100%;
   text-align: center;
-  margin: 0;
-  padding-top: 50px;
-  box-sizing: border-box;
+  top: 4vh;
+}
+
+@keyframes glowing-start-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 @keyframes dropDown {
@@ -282,18 +453,41 @@ a:hover {
   }
 }
 
-/*
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes rainbow-bg{
+  100%,0%{
+    background-color: rgb(255,0,0);
   }
-  to {
-    transform: rotate(360deg);
+  8%{
+    background-color: rgb(255,127,0);
+  }
+  16%{
+    background-color: rgb(255,255,0);
+  }
+  25%{
+    background-color: rgb(127,255,0);
+  }
+  33%{
+    background-color: rgb(0,255,0);
+  }
+  41%{
+    background-color: rgb(0,255,127);
+  }
+  50%{
+    background-color: rgb(0,255,255);
+  }
+  58%{
+    background-color: rgb(0,127,255);
+  }
+  66%{
+    background-color: rgb(0,0,255);
+  }
+  75%{
+    background-color: rgb(127,0,255);
+  }
+  83%{
+    background-color: rgb(255,0,255);
+  }
+  91%{
+    background-color: rgb(255,0,127);
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin 4s infinite;
-  }
-}
-*/
