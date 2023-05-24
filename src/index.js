@@ -19,7 +19,7 @@ function Index() {
     <Router>
       <Routes>
         <Route exact path="/" element={<App likedGames={likedGames} setLikedGames={setLikedGames} setShowLikedGamesPage={setShowLikedGamesPage} />} />
-        <Route path='/liked-games' element={<LikedGamesPage likedGames={likedGames} onClose={handleLikedGamesClose} />} />
+        <Route path='/liked-games' element={<LikedGamesPage likedGames={likedGames} panelItems={['Liked Games']} onClose={handleLikedGamesClose} />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -7,11 +7,12 @@ import LikedGames from './components/LikedGames';
 import { Link } from 'react-router-dom';
 
 function App({ likedGames, setLikedGames }) {
+  const [panelItems] = useState(['Liked Games']);
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
   const [summaryText, setSummaryText] = useState('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [panelItems] = useState(['Liked Games']);
+  
   const [gameCover, setGameCover] = useState('');
   const [gameTitle, setGameTitle] = useState('');
   const [showLikedGamesPage, setShowLikedGamesPage] = useState(false);
@@ -123,10 +124,10 @@ function App({ likedGames, setLikedGames }) {
           </div>
           <div className='like-dislike-buttons'>
             <div className='button-container'>
-              <button className='lt-button' color='LT' onClick={handleDislikeClick}>
+              <button className='rainbow-button' id='lt' onClick={handleDislikeClick}>
                 LT
               </button>
-              <button className='rt-button' color='RT' onClick={handleLikeClick}>
+              <button className='rainbow-button' id='rt' onClick={handleLikeClick}>
                 RT
               </button>
             </div>
