@@ -6,13 +6,16 @@ import './App.css';
 import LikedGames from './components/LikedGames';
 import { Link } from 'react-router-dom';
 import GameCard from './components/GameCard';
+import DOMPurify from 'dompurify';
+
+
 const App = ({ likedGames, setLikedGames }) => {
   const [panelItems] = useState(['Liked Games']);
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
   const [summaryText, setSummaryText] = useState('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const [ gameDescription, setGameDescription ] = useState('');
   const [gameCover, setGameCover] = useState('');
   const [gameTitle, setGameTitle] = useState('');
   const [showLikedGamesPage, setShowLikedGamesPage] = useState(false);
@@ -33,7 +36,7 @@ const App = ({ likedGames, setLikedGames }) => {
     setButtonClicked(false)
   };
   const handleLikeClick = () => {
-    const likedGame = { cover: gameCover, title: gameTitle }
+    const likedGame = { cover: gameCover, title: gameTitle, description: gameDescription }
     setLikedGames((prevLikedGames) => [...prevLikedGames, likedGame])
     getRandomGameCover()
   };
@@ -62,6 +65,11 @@ const App = ({ likedGames, setLikedGames }) => {
           const image = randomGame.image.medium_url.replace('http:','https');
           setGameCover(image);
           setGameTitle(randomGame.name)
+          const sanitizedDescription = DOMPurify.sanitize(randomGame.description);
+          const parser = new DOMParser();
+          const descriptionDoc = parser.parseFromString(sanitizedDescription, 'text/html');
+          const descriptionText = descriptionDoc.body.textContent;
+          setGameDescription(descriptionText);
         }
       }
     } catch (error) {
@@ -118,7 +126,7 @@ const App = ({ likedGames, setLikedGames }) => {
         <p>Loading...</p>
       ) : buttonClicked ? ( 
         <div className='game-container'>
-          <GameCard gameCover={gameCover} gameTitle={gameTitle} handleDislikeClick={handleDislikeClick} handleLikeClick={handleLikeClick} />
+          <GameCard gameCover={gameCover} gameTitle={gameTitle} gameDescription={gameDescription} handleDislikeClick={handleDislikeClick} handleLikeClick={handleLikeClick} />
           
         </div>
       ) : (

@@ -1,43 +1,90 @@
 .game-card {
     border-radius: 10px;
-    margin-top: 100px;
+    margin: 0 auto;
+    margin-top: 30px;
     padding-bottom: 11px;
     background-color: #b6b5b5;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 75vh;
+    width: 75vw;
+    max-width: 600px;
+    max-height: 800px;
     border: none;
-    width: auto;
-    height: 100%;
-    gap: 25px;
     z-index: 1;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-.game-card .game-image img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 500px;
+.game-image {
     position: relative;
-    object-fit: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: calc(9/16 * 100%);
+    overflow: hidden;
     border-radius: 10px 10px 0 0;
-    z-index: 0;
+}
+
+.game-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.game-card:hover .game-image img {
+    transform: scale(1.05);
 }
 
 .fixed-title {
-    position: relative;
-    text-align: center;
+    margin: 0;
+    padding: 15px;
+    text-align: left;
     color: #fff;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.description {
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.3;
+    height: 4.85em;
+}
+
+.description-container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    z-index: 2;
+    border-radius: 10px;
 }
 
 .like-dislike-buttons {
     display: flex;
     justify-content: center;
-  }
-
-.like-button {
+    gap: 25px;
+    margin: 18px;
     border-radius: 5px;
-}
-.dislike-button {
-    border-radius: 5px;
+    width: 100%;
 }
