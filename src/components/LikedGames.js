@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import './card.css';
+import { v4 as uuidv4 } from 'uuid';
 
 function LikedGamesPage({ likedGames }) {
 
@@ -24,11 +26,10 @@ function LikedGamesPage({ likedGames }) {
                 <div className="menu-bar"></div>
                 <h2 className="liked-games-title">Liked Games</h2>
                 <ul>
-                    {likedGames.map((game, index) => (
-                        <li key={index} style={{ marginBottom: '25px' }}>
+                    {likedGames.map((game) => (
+                        <li key={uuidv4()} style={{ marginBottom: '25px' }}>
                             <div className="card">
-                                <div className="animation-overlay"></div>
-                                <img src={game.cover} alt={game.title} className="card-image" />
+                                <img className="card-image" src={game.cover} alt={game.title} />
                                 <h4>{game.title}</h4>
                             </div>
                         </li>
