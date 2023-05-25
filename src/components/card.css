@@ -1,0 +1,82 @@
+.card {
+    position: relative;
+    width: auto;
+    max-width: 325px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: red;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 900;
+    transition-duration: .2s;
+    background: linear-gradient(0deg, #000, #272727);
+    margin-bottom: 10px;
+    z-index: 1;
+    animation: steam 20s linear infinite;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    background-color: #b6b5b5;
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.card:hover:before, .card:hover:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+            #0000ff, #00ff00,#ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+}
+
+
+.card .card-image {
+    max-width: 100%;    
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    z-index: 0;
+    
+}
+
+
+
+.card h3 {
+    color: #000;
+    margin-top: 10px;
+    text-align: center;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.card::after {
+    filter: blur(25px);
+}
