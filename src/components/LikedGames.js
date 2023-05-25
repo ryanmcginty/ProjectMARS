@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-
+import './card.css';
 function LikedGamesPage({ likedGames }) {
 
     const navigate = useNavigate();
@@ -11,6 +11,7 @@ function LikedGamesPage({ likedGames }) {
     if (likedGames.length === 0) {
         return (
             <div className="liked-games-page">
+                <div className="menu-bar"></div>
                 <h2 className="liked-games-title">Liked Games</h2>
                 <p>No liked games found.</p>
                 <div className="back-button-LG">
@@ -27,9 +28,10 @@ function LikedGamesPage({ likedGames }) {
                     {likedGames.map((game, index) => (
                         <li key={index} style={{ marginBottom: '25px' }}>
                             <div className="card">
-                                <div className="animation-overlay"></div>
-                                <img src={game.cover} alt={game.title} className="card-image" />
-                                <h4>{game.title}</h4>
+                                <div className="card-content">
+                                    <img src={game.cover} alt={game.title} className="card-image" />
+                                    <h3>{game.title}</h3>
+                                </div>
                             </div>
                         </li>
                     ))}

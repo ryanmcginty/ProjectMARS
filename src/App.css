@@ -152,22 +152,6 @@ a:hover {
   margin-top: 20px;
 }
 
-.game-image {
-  position: relative;
-  top: 100px;
-  right: 12%;
-  width: 75%;
-  max-width: 600px;
-  margin-bottom: 30px;
-}
-
-.like-dislike-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 70px;
-  margin-bottom: 20px;
-}
-
 .button-container {
   display: flex;
   justify-content: center;
@@ -191,15 +175,7 @@ a:hover {
   color: #fff;
 }
 
-.fixed-title {
-  position: fixed;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-}
+
 
 .start-button-container {
   position: fixed;
@@ -288,71 +264,6 @@ a:hover {
 #rt:after {
   background: green;
 }
-
-.card {
-  position: relative;
-  width: 26vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 10px;
-  background-color: red;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  font-weight: 900;
-  transition-duration: .2s;
-  background: linear-gradient(0deg, #000, #272727);
-  margin-bottom: 25px;
-}
-
-.card::before, .card::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
-		#0000ff, #00ff00,#ffff00, #ff0000);
-  background-size: 400%;
-  width: calc(100% + 5px);
-  height: calc(100% + 5px);
-  z-index: -1;
-  animation: steam 20s linear infinite;
-}
-
-.card-image {
-  width: 100%;
-  height: 85%;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-  position: relative;
-  z-index: 1;
-}
-
-.card h4 {
-  margin-top: auto;
-}
-
-@keyframes steam {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 400% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.card:after {
-  filter: blur(25px);
-}
-
 
 .back-button {
   position: fixed;
