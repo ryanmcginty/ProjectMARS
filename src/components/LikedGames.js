@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import './card.css';
+
 function LikedGamesPage({ likedGames }) {
 
     const navigate = useNavigate();
