@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import './card.css';
+<<<<<<< HEAD
+=======
+import { v4 as uuidv4 } from 'uuid';
+
+>>>>>>> 512a3335fe595edc6f0e9e4f00cae1e347a24a49
 function LikedGamesPage({ likedGames }) {
 
     const navigate = useNavigate();
@@ -25,13 +30,18 @@ function LikedGamesPage({ likedGames }) {
                 <div className="menu-bar"></div>
                 <h2 className="liked-games-title">Liked Games</h2>
                 <ul>
-                    {likedGames.map((game, index) => (
-                        <li key={index} style={{ marginBottom: '25px' }}>
+                    {likedGames.map((game) => (
+                        <li key={uuidv4()} style={{ marginBottom: '25px' }}>
                             <div className="card">
+<<<<<<< HEAD
                                 <div className="card-content">
                                     <img src={game.cover} alt={game.title} className="card-image" />
                                     <h3>{game.title}</h3>
                                 </div>
+=======
+                                <img className="card-image" src={game.cover} alt={game.title} />
+                                <h4>{game.title}</h4>
+>>>>>>> 512a3335fe595edc6f0e9e4f00cae1e347a24a49
                             </div>
                         </li>
                     ))}
