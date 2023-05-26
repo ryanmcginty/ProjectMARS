@@ -19,19 +19,16 @@ const GameCard = ({ gameCover, gameTitle, gameDescription, handleDislikeClick, h
             <div className="game-image">
                 <img src={gameCover} alt="game" style={{ maxWidth: '80vw', maxHeight: '80vh' }} />
             </div>
-            <h3 className="fixed-title">{gameTitle}</h3>
-            <div className="description-container">
-                <p className="description">{gameDescription}</p>
+            <div className="description">
+                <p className="fixed-title">{gameTitle}</p>
+                <p className="text-body">{gameDescription}</p>
             </div>
             <div className='like-dislike-buttons'>
-                <button className='dislike-button' onClick={handleDislike}>
-                    <FontAwesomeIcon icon={faThumbsDown}>LT</FontAwesomeIcon>
-                </button>
-                <button className='like-button' onClick={handleLike}>
-                    <FontAwesomeIcon icon={faThumbsUp}>RT</FontAwesomeIcon>
-                </button>
-            </div>
+                <button className='dislike-button' onClick={handleDislike}>LT</button>
+                <button className='like-button' onClick={handleLike}>RT</button>
+            </div>          
         </div>
+        
     );
 };
 

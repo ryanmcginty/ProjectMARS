@@ -51,7 +51,7 @@ const App = ({ likedGames, setLikedGames }) => {
     try {
       const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
       const currentDate = new Date();
-      const fiveYears = currentDate.getFullYear() - 5;
+      const fiveYears = currentDate.getFullYear() - 2;
       const releaseDateFilter = `original_release_date:${fiveYears}-01-01|${currentDate.toISOString().split('T')[0]}`;
       const response = await fetch(
         `${CORS_PROXY_URL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=random&filter=${releaseDateFilter}`
