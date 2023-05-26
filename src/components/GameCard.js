@@ -1,8 +1,5 @@
 import React from "react";
 import './gamecard.css'
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 
 const GameCard = ({ gameCover, gameTitle, gameDescription, handleDislikeClick, handleLikeClick }) => {
 

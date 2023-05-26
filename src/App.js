@@ -44,20 +44,35 @@ const App = ({ likedGames, setLikedGames }) => {
     getRandomGameCover()
   };
 
-  const CORS_PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
+  const corsProxies = [
+    'https://cors-anywhere.herokuapp.com/',
+    'https://allorigins.win/'
+  ];
 
   const getRandomGameCover = async () => {
     setLoading(true);
     try {
       const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
       const currentDate = new Date();
-      const fiveYears = currentDate.getFullYear() - 2;
-      const releaseDateFilter = `original_release_date:${fiveYears}-01-01|${currentDate.toISOString().split('T')[0]}`;
-      const response = await fetch(
-        `${CORS_PROXY_URL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=random&filter=${releaseDateFilter}`
-      );
-      const data = await response.json();
-      console.log(data);
+      const releaseDateFilter = `original_release_date:2016-01-01|${currentDate.toISOString().split('T')[0]}`;
+      const scoreFilter = 'score:85';
+      const reviewFilter = 'number_of_user_reviews:>0';
+      const languageFilter = 'platforms:146';
+      const sort = 'number_of_user_reviews:desc';
+      let proxyIndex = 0;
+      let data = null;
+      while (!data && proxyIndex < corsProxies.length) {
+        try {
+          const proxyURL = corsProxies[proxyIndex];
+          const response = await fetch(
+            `${proxyURL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=${releaseDateFilter},${scoreFilter},${reviewFilter},${languageFilter}&sort=${sort}`
+          );
+          data = await response.json();
+        } catch (error) {
+          console.error(`Failedd to fetch from ${corsProxies[proxyIndex]}: ${error}`)
+          proxyIndex++;
+        }
+      }
       if (data.results.length > 0) {
         const randomIndex = Math.floor(Math.random() * data.results.length);
         const randomGame = data.results[randomIndex];
@@ -70,6 +85,8 @@ const App = ({ likedGames, setLikedGames }) => {
           const descriptionDoc = parser.parseFromString(sanitizedDescription, 'text/html');
           const descriptionText = descriptionDoc.body.textContent;
           setGameDescription(descriptionText);
+        } else {
+          console.error('Failed to fetch data from all CORS proxies')
         }
       }
     } catch (error) {
