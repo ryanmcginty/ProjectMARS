@@ -309,6 +309,10 @@ a:hover {
   border-radius: 10px;
   opacity: 1;
  }
+
+ .rainbow-button:hover:before {
+  filter: blur(2px);
+ }
  
  @keyframes glowing {
   0% {

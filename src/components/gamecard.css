@@ -11,7 +11,7 @@
     align-items: center;
     margin-bottom: 100px;
     width: fit-content;
-    min-height: 300px;
+    min-height: min-content;
     min-width: 400px;
 }
 
@@ -71,7 +71,7 @@
     justify-content: space-between;
     width: auto;
     position: absolute;
-    gap: 75px;
+    gap: 150px;
     top: 0;
     right: 0;
     left: 0;
@@ -80,7 +80,7 @@
 
 .like-button {
     flex-grow: 1;
-    border-radius: 0 10px 0 0;
+    border-radius: 0 10px 2px 2px;
     border: none;
     font-size: 1.2rem;
     background-color: rgb(150, 228, 150);
@@ -88,7 +88,7 @@
 
 .dislike-button {
     flex-grow: 1;
-    border-radius: 10px 0 0 0;
+    border-radius: 10px 0 2px 2px;
     border: none;
     font-size: 1.2rem;
     background-color: rgb(223, 119, 119);
