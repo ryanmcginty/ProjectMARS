@@ -262,7 +262,7 @@ a:hover {
 }
 
 .rainbow-button {
-  padding: 1.2em 1.6em;
+  padding: 1.2em 3.4em;
   border: none;
   outline: none;
   color: #000;
@@ -272,7 +272,6 @@ a:hover {
   font-weight: 500;
   font-size: 17px;
   cursor: pointer;
-  position: relative;
   z-index: 0;
   border-radius: 12px;
  }
@@ -291,11 +290,7 @@ a:hover {
  /* glow */
  .rainbow-button::before {
   content: "";
-  background: linear-gradient(
-     45deg,
-     #FF0000, #3cff00, #002BFF, #3cff00,
-       #FF0000, #3cff00, #002BFF, #3cff00
- );
+  background: linear-gradient(45deg,#FF0000, #3cff00, #002BFF, #3cff00,#FF0000, #3cff00, #002BFF, #3cff00);
   position: absolute;
   top: -2px;
   left: -2px;
@@ -304,14 +299,10 @@ a:hover {
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   filter: blur(8px);
-  animation: glowing 20s linear infinite;
+  animation: glowing 25s linear infinite;
   transition: opacity .3s ease-in-out;
   border-radius: 10px;
   opacity: 1;
- }
-
- .rainbow-button:hover:before {
-  filter: blur(2px);
  }
  
  @keyframes glowing {
@@ -331,6 +322,7 @@ a:hover {
  /* hover */
  .rainbow-button:hover::before {
   opacity: 1;
+  filter: blur(2px);
  }
  
  .rainbow-button:active:after {
