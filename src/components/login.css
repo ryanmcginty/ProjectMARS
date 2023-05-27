@@ -1,0 +1,24 @@
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-page-container h2 {
+    margin-bottom: 10px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-button {
+    position: relative;
+    bottom: 590px;
+    left: 1195px;
+    z-index: 1;
+}

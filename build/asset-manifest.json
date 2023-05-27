@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d5da4f6f.css",
+    "main.js": "/static/js/main.72cfdbba.js",
+    "static/js/787.471419c7.chunk.js": "/static/js/787.471419c7.chunk.js",
+    "static/media/pmarslogo.png": "/static/media/pmarslogo.09c67b10396dd8272eb9.png",
+    "static/media/zelda.jpg": "/static/media/zelda.c9943a3940ae1c7df908.jpg",
+    "index.html": "/index.html",
+    "main.d5da4f6f.css.map": "/static/css/main.d5da4f6f.css.map",
+    "main.72cfdbba.js.map": "/static/js/main.72cfdbba.js.map",
+    "787.471419c7.chunk.js.map": "/static/js/787.471419c7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5da4f6f.css",
+    "static/js/main.72cfdbba.js"
+  ]
+}
