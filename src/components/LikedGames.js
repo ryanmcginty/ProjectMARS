@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import './card.css';
+import MenuBar from "./MenuBar";
 
 function LikedGamesPage({ likedGames }) {
 
@@ -9,10 +10,11 @@ function LikedGamesPage({ likedGames }) {
     const onClose = () => {
         navigate('/')
     };
+    
     if (likedGames.length === 0) {
         return (
-            <div className="liked-games-page">
-                <div className="menu-bar"></div>
+            <div className="liked-games-page" id="visible">
+                <MenuBar />
                 <h2 className="liked-games-title">Liked Games</h2>
                 <p>No liked games found.</p>
                 <div className="back-button-LG">
@@ -23,9 +25,9 @@ function LikedGamesPage({ likedGames }) {
     }
     return (
             <div className="liked-games-page">
-                <div className="menu-bar"></div>
+                <MenuBar />
                 <h2 className="liked-games-title">Liked Games</h2>
-                <ul>
+                <ul id="liked-games-list">
                     {likedGames.map((game, index) => (
                         <li key={index} style={{ marginBottom: '25px' }}>
                             <div className="card">

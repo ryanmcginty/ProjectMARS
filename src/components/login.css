@@ -16,6 +16,10 @@
     gap: 10px;
 }
 
+.login-button {
+    display: block;
+}
+
 .logout-button {
     position: relative;
     bottom: 590px;

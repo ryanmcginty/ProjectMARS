@@ -20,6 +20,7 @@
     animation: steam 20s linear infinite;
 }
 
+
 li:last-child .card {
     margin-bottom: 75px;
 }
