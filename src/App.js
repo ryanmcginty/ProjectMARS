@@ -8,15 +8,11 @@ import LikedGames from './components/LikedGames';
 import { Link } from 'react-router-dom';
 import GameCard from './components/GameCard';
 import DOMPurify from 'dompurify';
-import { useAuth0 } from '@auth0/auth0-react';
-import Login from './components/Login';
-
 
 const App = ({ likedGames, setLikedGames }) => {
-  const { isAuthenticated, logout } = useAuth0();
-  const [panelItems] = useState(['Liked Games']);
+  const [panelItems] = useState(['Liked Games','Login']);
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
-  const [summaryText, setSummaryText] = useState('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
+  const [summaryText, setSummaryText] = useState('Welcome to LT RT! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ gameDescription, setGameDescription ] = useState('');
@@ -24,10 +20,6 @@ const App = ({ likedGames, setLikedGames }) => {
   const [gameTitle, setGameTitle] = useState('');
   const [showLikedGamesPage, setShowLikedGamesPage] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const handleLogoutClick = () => {
-    logout({ returnTo: window.location.origin + "/login" });
-  };
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
@@ -40,7 +32,7 @@ const App = ({ likedGames, setLikedGames }) => {
   };
   const handleBackClick = () => {
     setWelcomeText('- Press Start -')
-    setSummaryText('Welcome to ProjectMARS! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
+    setSummaryText('Welcome to LT RT! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
     setButtonClicked(false)
   };
   const handleLikeClick = () => {
@@ -104,10 +96,6 @@ const App = ({ likedGames, setLikedGames }) => {
     }
   };
 
-  if (!isAuthenticated) {
-    return <Login />
-  }
-
   return (
     <div className="App">
         <div>
@@ -129,11 +117,13 @@ const App = ({ likedGames, setLikedGames }) => {
                 >
                   <ul>
                     {panelItems.map((item, index) => (
-                      <li key={index}>
+                      <li key={index} onClick={() => setMenuOpen(false)}>
                         {item === 'Liked Games' ? (
                           <Link to="/liked-games">{item}</Link>
+                        ) : item === 'Login' ? (
+                          <Link to="/login">{item}</Link>
                         ) : (
-                          item
+                          <span>{item}</span>
                         )}
                       </li>
                     ))}
@@ -143,7 +133,6 @@ const App = ({ likedGames, setLikedGames }) => {
             </div>
           </div>
           <header className="App-header">
-            <button className='logout-button' onClick={handleLogoutClick}>Logout</button>
             <div className={`logo-container ${buttonClicked ? 'shrink' : ''}`}>
               <img src={logo} className='App-logo' alt='logo'/>
             </div>
@@ -163,7 +152,7 @@ const App = ({ likedGames, setLikedGames }) => {
               </div>
             ) : (
               <div className='start-button-container'>
-                <button color='secondary' className='rainbow-button' onClick={handleButtonClick}>Start</button>
+                <button className='rainbow-button' onClick={handleButtonClick}>Start</button>
               </div>
             )}
             <div className='start-button-container'>

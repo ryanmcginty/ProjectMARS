@@ -4,14 +4,14 @@ import './login.css';
 
 const Login = () => {
 
-    const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+    const { loginWithPopup, isAuthenticated, isLoading } = useAuth0();
     const [username] = useState("");
     const [password] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async () => {
         try {
-            await loginWithRedirect({
+            await loginWithPopup({
                 screen_hint: "login",
                 login_hint: username,
                 password,
