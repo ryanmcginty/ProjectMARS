@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LikedGamesPage from './components/LikedGames';
 import Login from './components/Login';
 import { Auth0Provider } from '@auth0/auth0-react';
+import Profile from './components/User';
 
 function Index() {
 
@@ -32,6 +33,7 @@ function Index() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<App likedGames={likedGames} setLikedGames={setLikedGames} onClose={handleLikedGamesClose} />}/>
             <Route path="/liked-games" element={<LikedGamesPage likedGames={likedGames} panelItems={['Liked Games']} onClose={handleLikedGamesClose} />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Auth0Provider>
       </Router>

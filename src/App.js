@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from './controllert.png';
@@ -8,9 +8,13 @@ import LikedGames from './components/LikedGames';
 import { Link } from 'react-router-dom';
 import GameCard from './components/GameCard';
 import DOMPurify from 'dompurify';
+import LogoutButton from './components/Logout';
+import { useAuth0 } from '@auth0/auth0-react';
+import Login from './components/Login';
+import Profile from './components/User';
 
 const App = ({ likedGames, setLikedGames }) => {
-  const [panelItems] = useState(['Liked Games','Login']);
+  const [panelItems] = useState(['Liked Games','Profile','Login']);
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
   const [summaryText, setSummaryText] = useState('Welcome to LT RT! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -20,6 +24,8 @@ const App = ({ likedGames, setLikedGames }) => {
   const [gameTitle, setGameTitle] = useState('');
   const [showLikedGamesPage, setShowLikedGamesPage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const {isAuthenticated} = useAuth0();
 
   const handleMenuClick = () => {
     setMenuOpen(!menuOpen)
@@ -42,6 +48,9 @@ const App = ({ likedGames, setLikedGames }) => {
   };
   const handleDislikeClick = () => {
     getRandomGameCover()
+  };
+  const handleUsernameChange = (name) => {
+    setUsername(name)
   };
 
   const corsProxies = [
@@ -96,6 +105,13 @@ const App = ({ likedGames, setLikedGames }) => {
     }
   };
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
   return (
     <div className="App">
         <div>
@@ -116,21 +132,20 @@ const App = ({ likedGames, setLikedGames }) => {
                   onClick={handleMenuClick}
                 >
                   <ul>
-                    {panelItems.map((item, index) => (
-                      <li key={index} onClick={() => setMenuOpen(false)}>
-                        {item === 'Liked Games' ? (
-                          <Link to="/liked-games">{item}</Link>
-                        ) : item === 'Login' ? (
-                          <Link to="/login">{item}</Link>
-                        ) : (
-                          <span>{item}</span>
-                        )}
-                      </li>
-                    ))}
+                    <li onClick={() => setMenuOpen(false)}>
+                      <Link to="/liked-games">Liked Games</Link>
+                    </li>
+                    <li onClick={() => setMenuOpen(false)}>
+                      <Link to="/profile">Profile</Link>
+                    </li>
+                    <li onClick={() => setMenuOpen(false)}>
+                      {isAuthenticated ? <LogoutButton /> : <Login onUsernameChange={handleUsernameChange} />}
+                    </li>
                   </ul>
                 </div>
               )}
             </div>
+            <p className='user-text'>Hello, {username}</p>
           </div>
           <header className="App-header">
             <div className={`logo-container ${buttonClicked ? 'shrink' : ''}`}>

@@ -4,41 +4,26 @@ import './login.css';
 
 const Login = () => {
 
-    const { loginWithPopup, isAuthenticated, isLoading } = useAuth0();
-    const [username] = useState("");
-    const [password] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
-
-    const handleLogin = async () => {
-        try {
-            await loginWithPopup({
-                screen_hint: "login",
-                login_hint: username,
-                password,
-            });
-        } catch (error) {
-            setErrorMessage("Error logging in.");
-        }
-    };
-
+    const { loginWithRedirect, isAuthenticated, isLoading, user } = useAuth0();
+    
     useEffect(() => {
-        if(isAuthenticated) {
+        if(isAuthenticated && user) {
+            const { name } = user;
+            localStorage.setItem("username", name);
             window.location.href = "/";
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, user]);
 
     if(isLoading) {
         return <div>Loading...</div>
     }
 
+    if(isAuthenticated) {
+        return null;
+    }
+
     return (
-    <div className="login-page-container">
-        <h2>Login</h2>
-        {errorMessage && <p style={{ color: 'red', fontWeight: 650 }}>{errorMessage}</p>}
-        <form className="form-container">
-            <button className="login-button" type="button" onClick={handleLogin}>Login</button>
-        </form>
-    </div>
+        <span className="login-button" onClick={() => loginWithRedirect()}>Login</span>
     );
 };
 
