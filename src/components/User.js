@@ -31,7 +31,7 @@ const Profile = () => {
         return (
             <div className="profile-page">
                 <MenuBar className="profile-menu" />
-                <h3>Please login to view your profile.</h3>
+                <h3 className="logged-out-text">Please login to view your profile.</h3>
                 <div className="back-button-LG">
                     <button className="rainbow-button" onClick={onClose}>Back</button>
                 </div>
