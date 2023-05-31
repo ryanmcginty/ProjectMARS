@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import './userprofile.css';
 
 const Profile = ({ likedGamesCount }) => {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const navigate = useNavigate();
-    const [count, setCount] = useState(0);
 
     const onClose = () => {
         navigate('/')
@@ -25,7 +24,7 @@ const Profile = ({ likedGamesCount }) => {
     if (!isAuthenticated) {
         return (
             <div className="profile-page">
-                <MenuBar className="profile-menu" />
+                <MenuBar />
                 <h3 className="logged-out-text">Please login to view your profile.</h3>
                 <div className="back-button-LG">
                     <button className="rainbow-button" onClick={onClose}>Back</button>

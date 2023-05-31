@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.d5da4f6f.css",
-    "main.js": "/static/js/main.72cfdbba.js",
+    "main.css": "/static/css/main.d3b80729.css",
+    "main.js": "/static/js/main.45e38c8b.js",
     "static/js/787.471419c7.chunk.js": "/static/js/787.471419c7.chunk.js",
-    "static/media/pmarslogo.png": "/static/media/pmarslogo.09c67b10396dd8272eb9.png",
-    "static/media/zelda.jpg": "/static/media/zelda.c9943a3940ae1c7df908.jpg",
+    "static/media/controllert.png": "/static/media/controllert.8cdae186b603981205ff.png",
+    "static/media/astron-boy-italic.otf": "/static/media/astron-boy-italic.18be865e0fc6ada7943b.otf",
     "index.html": "/index.html",
-    "main.d5da4f6f.css.map": "/static/css/main.d5da4f6f.css.map",
-    "main.72cfdbba.js.map": "/static/js/main.72cfdbba.js.map",
+    "main.d3b80729.css.map": "/static/css/main.d3b80729.css.map",
+    "main.45e38c8b.js.map": "/static/js/main.45e38c8b.js.map",
     "787.471419c7.chunk.js.map": "/static/js/787.471419c7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5da4f6f.css",
-    "static/js/main.72cfdbba.js"
+    "static/css/main.d3b80729.css",
+    "static/js/main.45e38c8b.js"
   ]
 }

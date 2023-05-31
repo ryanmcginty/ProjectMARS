@@ -56,7 +56,6 @@ body::-webkit-scrollbar {
 }
 
 .App {
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
@@ -143,8 +142,7 @@ body::-webkit-scrollbar {
 
 .back-button-LG {
   position: fixed;
-  bottom: 20px;
-  margin-bottom: 20px;
+  bottom: 15px;
   z-index: 2;
 }
 
@@ -172,7 +170,6 @@ body::-webkit-scrollbar {
   font-size: 4vw;
   width: 100%;
   text-align: center;
-  top: 4vh;
 }
 
 

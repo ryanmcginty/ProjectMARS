@@ -42,15 +42,14 @@
 
 .menu-panel {
     position: absolute;
-    top: -50px;
-    left: 0;
     width: fit-content;
     background-color: #808080;
     z-index: 4;
     border-radius: 5px;
     transition: opacity 1s ease;
     display: none;
-    box-shadow: 0 0 4px 4px #9b9b9b;
+    box-shadow: 0 0 1px 1px #9b9b9b;
+    margin-top: -15px;
 }
 
 .menu.open .menu-panel {
