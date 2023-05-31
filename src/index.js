@@ -33,7 +33,7 @@ function Index() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<App likedGames={likedGames} setLikedGames={setLikedGames} onClose={handleLikedGamesClose} />}/>
             <Route path="/liked-games" element={<LikedGamesPage likedGames={likedGames} panelItems={['Liked Games']} onClose={handleLikedGamesClose} />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile likedGamesCount={likedGames.length} />} />
           </Routes>
         </Auth0Provider>
       </Router>

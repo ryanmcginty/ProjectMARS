@@ -5,21 +5,18 @@ import './components/login.css';
 import LikedGames from './components/LikedGames';
 import GameCard from './components/GameCard';
 import DOMPurify from 'dompurify';
-import { useAuth0 } from '@auth0/auth0-react';
 import MenuBar from './components/MenuBar';
 
 const App = ({ likedGames, setLikedGames }) => {
   const [welcomeText, setWelcomeText] = useState('- Press Start -');
   const [summaryText, setSummaryText] = useState('Welcome to LT RT! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
   const [buttonClicked, setButtonClicked] = useState(false);
-  const [ gameDescription, setGameDescription ] = useState('');
+  const [gameDescription, setGameDescription] = useState('');
   const [gameCover, setGameCover] = useState('');
   const [gameTitle, setGameTitle] = useState('');
   const [showLikedGamesPage, setShowLikedGamesPage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [setUsername] = useState("");
-  const [setLikedGamesCount] = useState(0);
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const handleButtonClick = () => {
     setWelcomeText('')
@@ -31,11 +28,13 @@ const App = ({ likedGames, setLikedGames }) => {
     setWelcomeText('- Press Start -')
     setSummaryText('Welcome to LT RT! The ultimate matchmaking platform for gamers. Discover and explore a wide range of game titles, express your preferences, and find your perfect gaming match. Simply swipe through various game titles, clicking the LT button to dislike a game or the RT button to like it. Our smart algorithm learns your preferences and suggests games that align with your taste. Join us now and level up your gaming journey!')
     setButtonClicked(false)
+    setShowLikedGamesPage(false)
   };
   const handleLikeClick = () => {
     const likedGame = { cover: gameCover, title: gameTitle, description: gameDescription }
     setLikedGames((prevLikedGames) => [...prevLikedGames, likedGame])
     getRandomGameCover()
+    setButtonClicked(true)
   };
   const handleDislikeClick = () => {
     getRandomGameCover()
@@ -98,7 +97,7 @@ const App = ({ likedGames, setLikedGames }) => {
     if (storedUsername) {
       setUsername(storedUsername);
     }
-  }, []);
+  });
 
   return (
     <div className="App">

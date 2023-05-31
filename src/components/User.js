@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import MenuBar from "./MenuBar";
 import './userprofile.css';
 
-const Profile = () => {
+const Profile = ({ likedGamesCount }) => {
     const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
     const navigate = useNavigate();
-    const [likedGamesCount, setLikedGamesCount] = useState(0);
+    const [count, setCount] = useState(0);
 
     const onClose = () => {
         navigate('/')
@@ -15,11 +15,6 @@ const Profile = () => {
 
     useEffect(() => {
         if(isAuthenticated) {
-            const likedGamesList = document.getElementById("liked-games-list");
-            if (likedGamesList) {
-                const likedGamesCount = likedGamesList.getElementsByTagName("li").length;
-                setLikedGamesCount(likedGamesCount);
-            }
         }
     }, [isAuthenticated]);
 

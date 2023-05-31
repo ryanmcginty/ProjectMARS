@@ -40,7 +40,7 @@ function LikedGamesPage({ likedGames }) {
                     ))}
                 </ul>
                 <div className="back-button-LG">
-                    <button className="rainbow-button" color="back" onClick={onClose}>Back</button>
+                    <button className="rainbow-button" onClick={onClose}>Back</button>
                 </div>    
             </div>
     );
