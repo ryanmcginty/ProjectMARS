@@ -40,14 +40,10 @@ const App = ({ likedGames, setLikedGames }) => {
     getRandomGameCover()
   };
 
-  const corsProxies = [
-    'https://cors-anywhere.herokuapp.com/',
-    'https://allorigins.win/'
-  ];
-
   const getRandomGameCover = async () => {
     setLoading(true);
     try {
+      const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
       const apiKey = '5a9aed02c512451b238b2e25ac4c739ecc8de336'
       const currentDate = new Date();
       const releaseDateFilter = `original_release_date:2016-01-01|${currentDate.toISOString().split('T')[0]}`;
@@ -55,20 +51,12 @@ const App = ({ likedGames, setLikedGames }) => {
       const reviewFilter = 'number_of_user_reviews:>0';
       const languageFilter = 'platforms:146';
       const sort = 'number_of_user_reviews:desc';
-      let proxyIndex = 0;
       let data = null;
-      while (!data && proxyIndex < corsProxies.length) {
-        try {
-          const proxyURL = corsProxies[proxyIndex];
-          const response = await fetch(
-            `${proxyURL}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=${releaseDateFilter},${scoreFilter},${reviewFilter},${languageFilter}&sort=${sort}`
-          );
-          data = await response.json();
-        } catch (error) {
-          console.error(`Failedd to fetch from ${corsProxies[proxyIndex]}: ${error}`)
-          proxyIndex++;
-        }
-      }
+      const response = await fetch(
+        `${corsProxyUrl}http://www.giantbomb.com/api/games/?api_key=${apiKey}&format=json&resources=game&filter=${releaseDateFilter},${scoreFilter},${reviewFilter},${languageFilter}&sort=${sort}`
+      );
+      data = await response.json();
+         
       if (data.results.length > 0) {
         const randomIndex = Math.floor(Math.random() * data.results.length);
         const randomGame = data.results[randomIndex];
